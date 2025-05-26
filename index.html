@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Access Token Display</title>
+</head>
+<body>
+  <h1>ABDM Access Token</h1>
+  <pre id="token">Loading...</pre>
+
+  <script>
+    fetch('/get-token')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('token').textContent = data.accessToken || "Token not available";
+      })
+      .catch(err => {
+        document.getElementById('token').textContent = "Error fetching token";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
