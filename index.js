@@ -8,7 +8,7 @@ const PORT = 3000;
 app.use(express.json())
 
 // Set up CORS
-// app.use(cors());
+app.use(cors());
 
 // API route to fetch accessToken
 app.get('/getToken', async (req, res) => {
