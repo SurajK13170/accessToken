@@ -2,12 +2,13 @@ const express = require('express');
 const axios = require('axios');
 const path = require('path');
 const {v4: randomUUID} = require('uuid');
-
+const cors = require('cors');
 const app = express();
 const PORT = 3000;
+app.use(express.json())
 
-// Serve static files from 'public' folder
-app.use(express.static('public'));
+// Set up CORS
+// app.use(cors());
 
 // API route to fetch accessToken
 app.get('/getToken', async (req, res) => {
@@ -35,7 +36,7 @@ app.get('/getToken', async (req, res) => {
     res.json({ accessToken: response.data.accessToken });
   } catch (error) {
     console.error('Error getting token:', error.message);
-    res.status(500).json({ error: 'Failed to fetch access token' });
+    res.status(500).json({ error: 'Failed to fetch access token', error });
   }
 });
 
